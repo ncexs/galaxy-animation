@@ -17,10 +17,13 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
+const textureLoader = new THREE.TextureLoader()
+const particleTexture = textureLoader.load('https://assets.codepen.io/127738/dotTexture.png')
+
 //galaxy
 const parameters = {}
 parameters.count = 100000;
-parameters.size = 0.01;
+parameters.size = 0.02;
 parameters.radius = 2.15; 
 parameters.branches = 3; 
 parameters.spin = 3;
@@ -45,7 +48,9 @@ material = new THREE.PointsMaterial({
     sizeAttenuation: true,
     depthWrite: false,
     blending: THREE.AdditiveBlending,
-    vertexColors: true
+    vertexColors: true,
+    map: particleTexture,
+    transparent: true
 })
 
     geometry = new THREE.BufferGeometry();
